@@ -10,6 +10,7 @@ import org.example.service.ExampleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
 @Component
 @Path("/example")
 public class Example{
@@ -18,10 +19,11 @@ public class Example{
     ExampleServiceImpl exampleService;
 
     @GET
-    @Path("/get/{id}")
+    @Path("/{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getExample(@PathParam(value = "id") int id){
-        return Response.status(200).entity(exampleService.getExample(id)).build();
+    public Response getExample(@PathParam("name") String name){
+        System.out.println("Request Received");
+        return Response.status(200).entity(exampleService.getExample(name)).build();
     }
 
 
