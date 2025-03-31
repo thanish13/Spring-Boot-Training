@@ -1,30 +1,15 @@
 package org.example.api;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import org.example.service.ExampleServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
+import org.springframework.web.bind.annotation.*;
 
 
-@Component
-@Path("/example")
-public class Example{
+@RestController
+@RequestMapping("/example")
+public interface Example{
 
-    @Autowired
-    ExampleServiceImpl exampleService;
-
-    @GET
-    @Path("/{name}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getExample(@PathParam("name") String name){
-        System.out.println("Request Received");
-        return Response.status(200).entity(exampleService.getExample(name)).build();
-    }
+    @GetMapping("/{name}")
+    String getExample(@PathVariable("name") String name);
 
 
 
