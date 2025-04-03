@@ -11,4 +11,19 @@ public class ExampleImpl implements Example{
     public Response getName(String name) {
         return Response.accepted().entity("Hello " + name ).build();
     }
+
+    @Override
+    public Response postName(String name) {
+        return Response.accepted().entity("Hello " + name ).build();
+    }
+
+    @Override
+    public Response updateName(String name) {
+        return Response.accepted().entity("Hello " + name ).build();
+    }
+
+    @Override
+    public Response deleteName(String name) {
+        return Response.accepted().entity("Hello " + name ).build();
+    }
 }
