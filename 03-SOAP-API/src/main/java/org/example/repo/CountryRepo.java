@@ -1,7 +1,6 @@
 package org.example.repo;
 
 import jakarta.annotation.PostConstruct;
-import org.example.model.Country;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -15,6 +14,11 @@ public class CountryRepo {
     @PostConstruct
     public void initData() {
         // initialize countries map
+        Country india = new Country();
+        india.setName("India");
+        india.setCapital("Delhi");
+        india.setCurrency(Currency.INR);
+        countries.put("India", india);
     }
 
     public Country findCountry(String name) {
