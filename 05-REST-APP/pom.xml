@@ -38,4 +38,33 @@
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <!-- RELEASE_VERSION -->
+                <version>7.12.0</version>
+                <!-- /RELEASE_VERSION -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/java/org/example/schema/openapi.yaml</inputSpec>
+                            <generatorName>jaxrs-jersey</generatorName>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <configOptions>
+                                <useJakartaEe>true</useJakartaEe>
+                                <sourceFolder>src/gen/java/main</sourceFolder>
+                            </configOptions>
+                            <apiPackage>${project.basedir}/src/main/java/org/example/api</apiPackage>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
