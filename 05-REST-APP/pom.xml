@@ -35,6 +35,11 @@
             <artifactId>swagger-jaxrs2</artifactId>
             <version>2.2.25</version>
         </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-core-jakarta</artifactId>
+            <version>2.2.22</version>
+        </dependency>
 
     </dependencies>
 
@@ -53,13 +58,22 @@
                         </goals>
                         <configuration>
                             <inputSpec>${project.basedir}/src/main/java/org/example/schema/openapi.yaml</inputSpec>
-                            <generatorName>jaxrs-jersey</generatorName>
+                            <templateDirectory>${project.basedir}/src/main/resources/template</templateDirectory>
+                            <generatorName>jaxrs-spec</generatorName>
+                            <generateApiDocumentation>false</generateApiDocumentation>
+                            <generateApiTests>false</generateApiTests>
+                            <generateModelDocumentation>false</generateModelDocumentation>
+                            <generateModelTests>false</generateModelTests>
+                            <generateApiTests>false</generateApiTests>
                             <generateSupportingFiles>false</generateSupportingFiles>
+                            <output>${project.basedir}/src/main/java</output>
+                            <apiPackage>o${project.build.sourceDirectory}/src/main/java/org/example/api</apiPackage>
+                            <modelPackage>org.example.model</modelPackage>
                             <configOptions>
                                 <useJakartaEe>true</useJakartaEe>
-                                <sourceFolder>src/gen/java/main</sourceFolder>
+                                <useBeanValidation>true</useBeanValidation>
+                                <oas3>true</oas3>
                             </configOptions>
-                            <apiPackage>${project.basedir}/src/main/java/org/example/api</apiPackage>
                         </configuration>
                     </execution>
                 </executions>
