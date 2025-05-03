@@ -66,7 +66,8 @@
                             <generateModelTests>false</generateModelTests>
                             <generateApiTests>false</generateApiTests>
                             <generateSupportingFiles>false</generateSupportingFiles>
-                            <apiPackage>${project.basedir}/src/main/java/org/example/api</apiPackage>
+                            <invokerPackage>org.example.api</invokerPackage>
+                            <apiPackage>org.example.api</apiPackage>
                             <modelPackage>org.example.model</modelPackage>
                             <configOptions>
                                 <useJakartaEe>true</useJakartaEe>
