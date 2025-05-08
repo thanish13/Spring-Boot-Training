@@ -14,8 +14,23 @@ import jakarta.validation.Valid;
 */
 @Path("/users")
 @Tag(name = "the users API")
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-05-05T21:45:16.536682200+05:30[Asia/Calcutta]", comments = "Generator version: 7.12.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-05-08T21:15:47.843372300+05:30[Asia/Calcutta]", comments = "Generator version: 7.12.0")
 public interface UsersApi {
+
+    /**
+     * Optional extended description in CommonMark or HTML.
+     *
+     * @param message 
+     * @return A JSON array of user names
+     */
+    @GET
+    @Path("/decrypt")
+    @Produces({ "application/json" })
+    @Operation(summary = "Returns a list of users.", description = "Optional extended description in CommonMark or HTML." )
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200" , description = "A JSON array of user names"  )
+    })
+    Response usersDecryptGet(@QueryParam("message")   String message);
 
     /**
      * Optional extended description in CommonMark or HTML.
@@ -23,10 +38,11 @@ public interface UsersApi {
      * @return A JSON array of user names
      */
     @GET
+    @Path("/encrypt")
     @Produces({ "application/json" })
     @Operation(summary = "Returns a list of users.", description = "Optional extended description in CommonMark or HTML." )
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200" , description = "A JSON array of user names"  )
     })
-    Response usersGet();
+    Response usersEncryptGet();
 }
