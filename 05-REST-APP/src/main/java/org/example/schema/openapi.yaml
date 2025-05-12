@@ -29,13 +29,13 @@ paths:
     get:
         summary: Returns a list of users.
         description: Optional extended description in CommonMark or HTML.
-        parameters:
-          - name: message
-            in: query
-            required: false
-            explode: true
-            schema:
-              type: string
+        requestBody:
+          description: Optional description in *Markdown*
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/body"
         responses:
           "200": # status code
             description: A JSON array of user names
@@ -45,3 +45,16 @@ paths:
                   type: array
                   items:
                     type: string
+
+components:
+  schemas:
+    body:
+        title: Request Body
+        type: object
+        properties:
+          message:
+            type: string
+            description: Message
+          key:
+            type: string
+            description: Key

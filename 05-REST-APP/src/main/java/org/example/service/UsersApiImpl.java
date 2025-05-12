@@ -1,121 +1,112 @@
 package org.example.service;
 
 import jakarta.ws.rs.core.Response;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.example.api.UsersApi;
+import org.example.model.Body;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.security.*;
-import java.security.spec.EncodedKeySpec;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 @Component
 public class UsersApiImpl implements UsersApi {
 
+    private static final Logger log = LoggerFactory.getLogger(UsersApiImpl.class);
+
+    Generator generator;
+    Cipher cipher;
+
+
+    public UsersApiImpl() throws NoSuchAlgorithmException, NoSuchPaddingException {
+        this.generator = new Generator();
+        this.cipher = Cipher.getInstance("RSA");
+    }
+
+    public static class Generator {
+
+        KeyPairGenerator generator;
+
+        public Generator() throws NoSuchAlgorithmException {
+            this.generator = KeyPairGenerator.getInstance("RSA");
+        }
+
+        public KeyPair pair(){
+            generator.initialize(2048);
+            return generator.generateKeyPair();
+        }
+    }
+
     @Override
     public Response usersEncryptGet() {
         try{
-            KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
-            generator.initialize(2048);
-            KeyPair pair = generator.generateKeyPair();
-            PrivateKey privateKey = pair.getPrivate();
-            PublicKey publicKey = pair.getPublic();
-            try (FileOutputStream fos = new FileOutputStream("public.key")) {
-                fos.write(publicKey.getEncoded());
-            }
+            String secretMessage = "message";
 
-            PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(privateKey.getEncoded());
-            try (FileOutputStream fos = new FileOutputStream("private.key")) {
-                fos.write(pkcs8EncodedKeySpec.getEncoded());
-            }
-
-            File publicKeyFile = new File("public.key");
-            byte[] publicKeyBytes = Files.readAllBytes(publicKeyFile.toPath());
-
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(publicKeyBytes);
-            keyFactory.generatePublic(publicKeySpec);
-
-            PublicKey pubKey = keyFactory.generatePublic(publicKeySpec);
-
-            String secretMessage = "Baeldung secret message";
-
-            Cipher encryptCipher = Cipher.getInstance("RSA");
-            encryptCipher.init(Cipher.ENCRYPT_MODE, pubKey);
+            cipher.init(Cipher.ENCRYPT_MODE, generator.pair().getPublic());
 
             byte[] secretMessageBytes = secretMessage.getBytes(StandardCharsets.UTF_8);
-            byte[] encryptedMessageBytes = encryptCipher.doFinal(secretMessageBytes);
+            byte[] encryptedMessageBytes = cipher.doFinal(secretMessageBytes);
 
-            byte[] encodedMessage = Base64.getEncoder().encode(encryptedMessageBytes);
+            String encodedMessage = Base64.getEncoder().encodeToString(encryptedMessageBytes);
+            String key = Base64.getEncoder().encodeToString(generator.pair().getPrivate().getEncoded());
 
-            File privateKeyFile = new File("private.key");
-            byte[] privateKeyBytes = Files.readAllBytes(privateKeyFile.toPath());
+            EncryptedMessage encryptedMessage = new EncryptedMessage(encodedMessage, key);
 
-            KeyFactory privateKeyFactory = KeyFactory.getInstance("RSA");
-            PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(privateKeyBytes);
-            privateKeyFactory.generatePrivate(privateKeySpec);
-
-            PrivateKey priKey = privateKeyFactory.generatePrivate(privateKeySpec);
-
-            Cipher decryptCipher = Cipher.getInstance("RSA");
-            decryptCipher.init(Cipher.DECRYPT_MODE, priKey);
-
-            byte[] decryptedMessageBytes = decryptCipher.doFinal(encryptedMessageBytes);
-            String decryptedMessage = new String(decryptedMessageBytes, StandardCharsets.UTF_8);
-
-            return Response.status(200).entity(decryptedMessage).build();
+            return Response.status(200).entity(encryptedMessage).build();
         }
-        catch (NoSuchAlgorithmException | BadPaddingException | IOException | InvalidKeySpecException |
-               NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException e) {
+        catch (BadPaddingException |
+               InvalidKeyException | IllegalBlockSizeException e) {
             throw new RuntimeException(e);
         }
     }
 
 
     @Override
-    public Response usersDecryptGet(String body) {
+    public Response usersDecryptGet(Body body) {
 
-        try {
-            File privateKeyFile = new File("private.key");
-            byte[] privateKeyBytes = Files.readAllBytes(privateKeyFile.toPath());
+        try{
 
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(privateKeyBytes);
-            keyFactory.generatePrivate(privateKeySpec);
+            KeyFactory kf = KeyFactory.getInstance("RSA");
+            PrivateKey privateKey = kf.generatePrivate(new PKCS8EncodedKeySpec(Base64.getDecoder().decode(body.getKey())));
 
-            PrivateKey key = keyFactory.generatePrivate(privateKeySpec);
+            cipher.init(Cipher.DECRYPT_MODE, privateKey);
 
-            String secretMessage = "Baeldung secret message";
+            log.info("{}",Base64.getEncoder().encodeToString(privateKey.getEncoded()));
 
-            Cipher encryptCipher = Cipher.getInstance("RSA");
-            encryptCipher.init(Cipher.ENCRYPT_MODE, key);
+            byte[] decodedBytes = Base64.getDecoder().decode(body.getMessage());
+            byte[] decryptedMessageBytes = cipher.doFinal(decodedBytes);
 
-            byte[] secretMessageBytes = secretMessage.getBytes(StandardCharsets.UTF_8);
-            byte[] encryptedMessageBytes = encryptCipher.doFinal(secretMessageBytes);
-
-            Cipher decryptCipher = Cipher.getInstance("RSA");
-            decryptCipher.init(Cipher.DECRYPT_MODE, key);
-
-            byte[] decryptedMessageBytes = decryptCipher.doFinal(encryptedMessageBytes);
             String decryptedMessage = new String(decryptedMessageBytes, StandardCharsets.UTF_8);
 
             return Response.status(200).entity(decryptedMessage).build();
         }
-        catch (NoSuchAlgorithmException | BadPaddingException | IOException | InvalidKeySpecException |
-                 NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException e) {
+        catch (NoSuchAlgorithmException | BadPaddingException | InvalidKeyException |
+               IllegalBlockSizeException | InvalidKeySpecException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Getter
+    @Setter
+    @Builder
+    public static class EncryptedMessage{
+        String message;
+        String key;
+
+        public EncryptedMessage(String message, String key){
+            this.message = message;
+            this.key = key;
         }
     }
 }
