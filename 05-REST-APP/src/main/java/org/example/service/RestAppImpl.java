@@ -9,6 +9,7 @@ public class RestAppImpl implements RestApp {
 
     @Override
     public Response getRequest() {
-        return Response.accepted().build();
+
+        return Response.accepted().entity("j  ").build();
     }
 }

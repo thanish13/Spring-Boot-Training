@@ -14,7 +14,7 @@ import jakarta.validation.Valid;
 * Represents a collection of functions to interact with the API endpoints.
 */
 @Path("/users")
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-05-12T12:13:17.547763700+05:30[Asia/Calcutta]", comments = "Generator version: 7.12.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-05-12T13:06:04.616294800+05:30[Asia/Calcutta]", comments = "Generator version: 7.12.0")
 public interface UsersApi {
 
     /**

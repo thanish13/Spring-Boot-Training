@@ -16,6 +16,7 @@ public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
 
         register(UsersApiImpl.class);
+        register(RestAppImpl.class);
 
     }
 }
