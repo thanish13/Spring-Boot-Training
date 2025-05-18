@@ -1,13 +1,24 @@
 package org.example.config;
 
-import io.swagger.v3.jaxrs2.integration.resources.BaseOpenApiResource;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+import io.swagger.v3.jaxrs2.Reader;
+import io.swagger.v3.jaxrs2.SwaggerSerializers;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
+import io.swagger.v3.oas.models.ExternalDocumentation;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.tags.Tag;
 import jakarta.ws.rs.ApplicationPath;
+import org.example.api.MyResource;
 import org.example.api.UsersApi;
 import org.example.service.RestAppImpl;
 import org.example.service.UsersApiImpl;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Set;
 
 @Configuration
 @ApplicationPath("/app")
@@ -15,8 +26,21 @@ public class JerseyConfig extends ResourceConfig {
 
     public JerseyConfig() {
 
+        OpenApiResource openApiResource = new OpenApiResource();
+        openApiResource.setResourcePackages(Set.of("org.example.api"));
+
         register(UsersApiImpl.class);
         register(RestAppImpl.class);
+        register(MyResource.class);
+        register(OpenApiResource.class);
+        register(SwaggerSerializers.class);
 
+    }
+
+
+    @Bean
+    public OpenAPI springShopOpenAPI() {
+        Reader reader = new Reader();
+        return reader.read(MyResource.class);
     }
 }

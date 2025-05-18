@@ -1,5 +1,6 @@
 package org.example.api;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -15,6 +16,6 @@ public interface RestApp {
     @GET
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @ApiResponse
+    @Operation
     Response getRequest();
 }
