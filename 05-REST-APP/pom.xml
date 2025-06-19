@@ -89,11 +89,41 @@
                 <!-- /RELEASE_VERSION -->
                 <executions>
                     <execution>
+                        <id>users</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
                             <inputSpec>${project.basedir}/src/main/java/org/example/schema/openapi.yaml</inputSpec>
+                            <templateDirectory>${project.basedir}/src/main/resources/template</templateDirectory>
+                            <generatorName>jaxrs-spec</generatorName>
+                            <generateApiDocumentation>false</generateApiDocumentation>
+                            <generateApiTests>false</generateApiTests>
+                            <generateModelDocumentation>false</generateModelDocumentation>
+                            <generateModelTests>false</generateModelTests>
+                            <generateApiTests>false</generateApiTests>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <output>${project.basedir}</output>
+                            <apiPackage>org.example.api</apiPackage>
+                            <modelPackage>org.example.model</modelPackage>
+                            <configOptions>
+                                <sourceFolder>src\main\java</sourceFolder>
+                                <interfaceOnly>true</interfaceOnly>
+                                <useJakartaEe>true</useJakartaEe>
+                                <useBeanValidation>true</useBeanValidation>
+                                <returnResponse>true</returnResponse>
+                                <oas3>true</oas3>
+                                <useSwaggerAnnotations>false</useSwaggerAnnotations>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>inventory</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/java/org/example/schema/inventory.yaml</inputSpec>
                             <templateDirectory>${project.basedir}/src/main/resources/template</templateDirectory>
                             <generatorName>jaxrs-spec</generatorName>
                             <generateApiDocumentation>false</generateApiDocumentation>

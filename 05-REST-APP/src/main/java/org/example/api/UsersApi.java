@@ -14,7 +14,7 @@ import jakarta.validation.Valid;
 * Represents a collection of functions to interact with the API endpoints.
 */
 @Path("/users")
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-05-18T21:38:20.308106600+05:30[Asia/Calcutta]", comments = "Generator version: 7.12.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-06-19T21:13:57.896422400+05:30[Asia/Calcutta]", comments = "Generator version: 7.12.0")
 public interface UsersApi {
 
     /**
@@ -28,9 +28,6 @@ public interface UsersApi {
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @Operation(summary = "Returns a list of users.", description = "Optional extended description in CommonMark or HTML." )
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200" , description = "A JSON array of user names"  )
-    })
     Response usersDecryptGet(@Valid @NotNull Body body);
 
     /**
@@ -42,8 +39,5 @@ public interface UsersApi {
     @Path("/encrypt")
     @Produces({ "application/json" })
     @Operation(summary = "Returns a list of users.", description = "Optional extended description in CommonMark or HTML." )
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200" , description = "A JSON array of user names"  )
-    })
     Response usersEncryptGet();
 }

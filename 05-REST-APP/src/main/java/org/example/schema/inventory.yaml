@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: Inventory Management API
+  version: 1.0.0
+  description: API for managing inventory items
+
+paths:
+  /inventory:
+    get:
+      summary: Get all inventory items
+      responses:
+        '200':
+          description: List of inventory items
+    post:
+      summary: Create a new inventory item
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryItem'
+      responses:
+        '201':
+          description: Item created
+
+  /inventory/{itemId}:
+    get:
+      summary: Get a specific inventory item
+      parameters:
+        - in: path
+          name: itemId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Inventory item details
+        '404':
+          description: Item not found
+    put:
+      summary: Update a specific inventory item
+      parameters:
+        - in: path
+          name: itemId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryItem'
+      responses:
+        '200':
+          description: Item updated
+    delete:
+      summary: Delete a specific inventory item
+      parameters:
+        - in: path
+          name: itemId
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Item deleted
+
+components:
+  schemas:
+    InventoryItem:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "123"
+        name:
+          type: string
+          example: "Laptop"
+        quantity:
+          type: integer
+          example: 10
+        price:
+          type: number
+          format: float
+          example: 999.99
