@@ -8,18 +8,18 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 
 @Path("/oauth")
 public interface OauthApi {
 
-    @POST
+    @GET
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
     Response login();
 
     @GET
-    @Path("/home")
+    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    Response home(HttpServletRequest request);
-
+    Response home(OAuth2AuthenticationToken token);
 }
