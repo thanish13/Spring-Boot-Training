@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validation;
 import jakarta.ws.rs.core.Response;
 import org.example.api.RestApp;
@@ -32,7 +33,7 @@ public class RestAppImpl implements RestApp {
         Set<ConstraintViolation<Employee>> error = Validation.buildDefaultValidatorFactory().getValidator().validate(employee);
 
         if (!error.isEmpty()){
-            return Response.status(400).entity("Bad Request").build();
+            throw new ConstraintViolationException(error);
         }
 
         return Response.accepted(employee).build();

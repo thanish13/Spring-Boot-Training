@@ -12,6 +12,7 @@ import io.swagger.v3.oas.models.tags.Tag;
 import jakarta.ws.rs.ApplicationPath;
 import org.example.api.MyResource;
 import org.example.api.UsersApi;
+import org.example.exception.ConstraintViolationMapper;
 import org.example.service.RestAppImpl;
 import org.example.service.UsersApiImpl;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -34,6 +35,7 @@ public class JerseyConfig extends ResourceConfig {
         register(MyResource.class);
         register(OpenApiResource.class);
         register(SwaggerSerializers.class);
+        register(ConstraintViolationMapper.class);
 
     }
 
