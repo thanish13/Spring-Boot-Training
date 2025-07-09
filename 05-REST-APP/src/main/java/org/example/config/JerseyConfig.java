@@ -13,6 +13,7 @@ import jakarta.ws.rs.ApplicationPath;
 import org.example.api.MyResource;
 import org.example.api.UsersApi;
 import org.example.exception.ConstraintViolationMapper;
+import org.example.service.OauthApiImpl;
 import org.example.service.RestAppImpl;
 import org.example.service.UsersApiImpl;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -27,22 +28,12 @@ public class JerseyConfig extends ResourceConfig {
 
     public JerseyConfig() {
 
-        OpenApiResource openApiResource = new OpenApiResource();
-        openApiResource.setResourcePackages(Set.of("org.example.api"));
-
         register(UsersApiImpl.class);
         register(RestAppImpl.class);
         register(MyResource.class);
-        register(OpenApiResource.class);
-        register(SwaggerSerializers.class);
         register(ConstraintViolationMapper.class);
+        register(OauthApiImpl.class);
 
     }
 
-
-    @Bean
-    public OpenAPI springShopOpenAPI() {
-        Reader reader = new Reader();
-        return reader.read(MyResource.class);
-    }
 }

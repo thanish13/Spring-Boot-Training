@@ -1,6 +1,15 @@
 server:
   port: 8090
 
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: Ov23lituNTez3FWvKFeq
+            clientSecret: 8bd63f4448fcba5e3173b4a9e1283c6d725a919b
+
 springdoc:
   swagger-ui:
     use-root-path: true

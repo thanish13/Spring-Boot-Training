@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("InventoryItem")
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-06-19T21:13:58.473124600+05:30[Asia/Calcutta]", comments = "Generator version: 7.12.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-07-06T08:02:29.599716600+05:30[Asia/Calcutta]", comments = "Generator version: 7.12.0")
 public class InventoryItem   {
   private String id;
   private String name;
