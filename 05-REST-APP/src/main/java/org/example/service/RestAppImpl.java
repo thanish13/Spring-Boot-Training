@@ -1,8 +1,6 @@
 package org.example.service;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -13,9 +11,12 @@ import org.example.model.Employee;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
+import java.util.concurrent.*;
 
 @Component
 public class RestAppImpl implements RestApp {
+
+    ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
     @Override
     public Response getRequest() {
@@ -38,5 +39,23 @@ public class RestAppImpl implements RestApp {
 
         return Response.accepted(employee).build();
 
+    }
+
+    @Override
+    public Response asyncRequest() throws ExecutionException, InterruptedException {
+
+        Thread.sleep(3000);
+        return response();
+    }
+
+    @Override
+    public Response execRequest() throws JsonProcessingException, ExecutionException, InterruptedException {
+        ScheduledFuture<Response> result = executorService.schedule(this::response, 5L, TimeUnit.SECONDS);
+
+        return result.get();
+    }
+
+    public Response response(){
+        return Response.accepted("Async").build();
     }
 }

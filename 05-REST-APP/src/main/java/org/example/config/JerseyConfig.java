@@ -32,7 +32,7 @@ public class JerseyConfig extends ResourceConfig {
         register(RestAppImpl.class);
         register(MyResource.class);
         register(ConstraintViolationMapper.class);
-        register(OauthApiImpl.class);
+        //register(OauthApiImpl.class);
 
     }
 
