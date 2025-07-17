@@ -12,6 +12,7 @@ import io.swagger.v3.oas.models.tags.Tag;
 import jakarta.ws.rs.ApplicationPath;
 import org.example.api.MyResource;
 import org.example.api.UsersApi;
+import org.example.cronjob.ScheduledTask;
 import org.example.exception.ConstraintViolationMapper;
 import org.example.service.OauthApiImpl;
 import org.example.service.RestAppImpl;

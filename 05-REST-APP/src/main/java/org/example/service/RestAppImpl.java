@@ -49,8 +49,10 @@ public class RestAppImpl implements RestApp {
     }
 
     @Override
-    public Response execRequest() throws JsonProcessingException, ExecutionException, InterruptedException {
+    public Response execRequest() throws ExecutionException, InterruptedException {
         ScheduledFuture<Response> result = executorService.schedule(this::response, 5L, TimeUnit.SECONDS);
+
+        Future<?> res = Executors.newFixedThreadPool(5).submit(this ::response);
 
         return result.get();
     }
