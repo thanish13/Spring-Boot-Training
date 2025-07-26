@@ -8,7 +8,27 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookApiImpl implements BookApi {
 
     @Override
-    public ResponseEntity<?> postCall() {
-        return ResponseEntity.ok("API");
+    public ResponseEntity<?> getAllBooks() {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<?> getBookById(Long id) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<?> createBook(Object book) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<?> updateBook(Long id, Object book) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<?> deleteBook(Long id) {
+        return null;
     }
 }
