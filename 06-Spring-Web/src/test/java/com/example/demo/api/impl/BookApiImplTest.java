@@ -15,7 +15,7 @@ public class BookApiImplTest {
     @Test
     public void postCall() {
 
-        ResponseEntity<?> response = bookApi.postCall();
+        ResponseEntity<?> response = bookApi.getAllBooks();
 
         assertEquals(response.getStatusCode(), HttpStatusCode.valueOf(200));
 
