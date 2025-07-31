@@ -9,26 +9,26 @@ public class BookApiImpl implements BookApi {
 
     @Override
     public ResponseEntity<?> getAllBooks() {
-        return null;
+        return ResponseEntity.ok().build();
     }
 
     @Override
     public ResponseEntity<?> getBookById(Long id) {
-        return null;
+        return ResponseEntity.ok().build();
     }
 
     @Override
     public ResponseEntity<?> createBook(Object book) {
-        return null;
+        return ResponseEntity.ok().build();
     }
 
     @Override
     public ResponseEntity<?> updateBook(Long id, Object book) {
-        return null;
+        return ResponseEntity.ok().build();
     }
 
     @Override
     public ResponseEntity<?> deleteBook(Long id) {
-        return null;
+        return ResponseEntity.ok().build();
     }
 }

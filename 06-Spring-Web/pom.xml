@@ -68,15 +68,13 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.github.tomakehurst/wiremock -->
 		<dependency>
-			<groupId>org.wiremock</groupId>
-			<artifactId>wiremock</artifactId>
-			<version>3.0.1</version>
+			<groupId>com.github.tomakehurst</groupId>
+			<artifactId>wiremock-standalone</artifactId>
+			<version>2.6.0</version>
 			<scope>test</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.wiremock/wiremock-jetty12 -->
 		<dependency>
 			<groupId>org.wiremock</groupId>
 			<artifactId>wiremock-jetty12</artifactId>
