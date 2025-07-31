@@ -27,11 +27,6 @@ public class SpringIntegrationTest {
     public SpringIntegrationTest(){
 
         wireMockServer.start();
-//
-//        configureFor("localhost", wireMockServer.port());
-//        stubFor(get(urlEqualTo("/api/books"))
-//                .withHeader("content-type", equalTo("application/json"))
-//                .willReturn(aResponse().withStatus(200).withBody("Crime and Punishment")));
 
     }
 
