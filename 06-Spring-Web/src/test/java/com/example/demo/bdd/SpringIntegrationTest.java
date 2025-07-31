@@ -31,17 +31,16 @@ public class SpringIntegrationTest {
     }
 
     // executeGet implementation
-    public void executeGet(String url) throws IOException {
+    public HttpResponse executeGet(String url) throws IOException {
 
         ClassicHttpRequest request = new HttpGet("http://localhost:" + wireMockServer.port() + url);
         request.addHeader("content-type", "application/json");
         HttpResponse response = httpClient.execute(request);
-
-        wireMockServer.stop();
+        return response;
     }
 
     // executePost implementation
-    public void executePost(String url, Object body) throws IOException {
+    public HttpResponse executePost(String url, Object body) throws IOException {
 
         ClassicHttpRequest request = new HttpPost("http://localhost:" + wireMockServer.port() + url);
         request.addHeader("content-type", "application/json");
@@ -49,7 +48,7 @@ public class SpringIntegrationTest {
         request.setEntity(entity);
         HttpResponse response = httpClient.execute(request);
 
-        wireMockServer.stop();
+        return  response;
 
     }
 }

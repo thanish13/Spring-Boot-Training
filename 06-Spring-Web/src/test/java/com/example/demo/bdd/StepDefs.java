@@ -4,7 +4,9 @@ package com.example.demo.bdd;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.hc.core5.http.HttpResponse;
 import org.junit.Assert;
+import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,14 +17,16 @@ import java.util.stream.Stream;
 
 public class StepDefs extends SpringIntegrationTest {
 
+    public HttpResponse response;
+
     @When("the client calls {word}")
     public void the_client_issues_GET_version(String word) throws Throwable {
-        executeGet("/api/books");
+        response = executeGet("/api/books");
     }
 
     @Then("the client receives status code of {int}")
-    public void theClientReceivesStatusCodeOf(int arg0) {
-        Assert.assertEquals(arg0, 200);
+    public void theClientReceivesStatusCodeOf(int statusCode) {
+        Assert.assertEquals(statusCode, response.getCode());
     }
 
     @Then("the client receives response down below")
@@ -43,6 +47,6 @@ public class StepDefs extends SpringIntegrationTest {
                 System.out.println(key + " : " + value)
         );
 
-        executePost(api, bookDetailsMap);
+        response = executePost(api, bookDetailsMap);
     }
 }
