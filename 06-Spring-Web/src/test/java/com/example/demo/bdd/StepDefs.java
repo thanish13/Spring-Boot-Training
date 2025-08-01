@@ -20,8 +20,8 @@ public class StepDefs extends SpringIntegrationTest {
     public HttpResponse response;
 
     @When("the client calls {word}")
-    public void the_client_issues_GET_version(String word) throws Throwable {
-        response = executeGet("/api/books");
+    public void the_client_calls_get(String url) throws Throwable {
+        response = executeGet(url);
     }
 
     @Then("the client receives status code of {int}")
@@ -35,7 +35,7 @@ public class StepDefs extends SpringIntegrationTest {
     }
 
     @When("the client calls {string} with body")
-    public void theClientCallsPostWithBody(String api, DataTable table) throws IOException {
+    public void theClientCallsPostWithBody(String url, DataTable table) throws IOException {
 
         List<Map<String, String>> dataList = table.asMaps(String.class, String.class);
 
@@ -47,6 +47,6 @@ public class StepDefs extends SpringIntegrationTest {
                 System.out.println(key + " : " + value)
         );
 
-        response = executePost(api, bookDetailsMap);
+        response = executePost(url, bookDetailsMap);
     }
 }
