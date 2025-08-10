@@ -1,15 +1,15 @@
 # src/main/resources/graphql/schema.graphqls
 type Book {
-    id: ID!
-    title: String!
+    id: String
+    title: String
     author: String
 }
 
 type Query {
-    allBooks: [Book!]!
-    bookById(id: ID!): Book
+    allBooks: [Book]
+    bookById(id: String): Book
 }
 
 type Mutation {
-    addBook(title: String!, author: String): Book!
+    addBook(id: String, title: String, author: String): Book
 }

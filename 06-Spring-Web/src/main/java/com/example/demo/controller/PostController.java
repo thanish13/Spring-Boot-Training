@@ -11,18 +11,20 @@ import java.util.List;
 @Controller
 public class PostController {
 
+    Book book = new Book("1","title","author");
+
     @QueryMapping
     public List<Book> allBooks() {
-        return List.of(new Book("1","",""));
+        return List.of(book);
     }
 
     @QueryMapping
     public Book bookById(@Argument String id) {
-        return new Book("1","","");
+        return book;
     }
 
     @MutationMapping
-    public Book addBook(@Argument String title, @Argument String author) {
-        return new Book("1",title, author);
+    public Book addBook(@Argument String id ,@Argument String title, @Argument String author) {
+        return new Book(id ,title, author);
     }
 }
