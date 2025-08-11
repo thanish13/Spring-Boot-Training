@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.BookRepository;
 import com.example.demo.model.Book;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -11,20 +13,22 @@ import java.util.List;
 @Controller
 public class PostController {
 
-    Book book = new Book("1","title","author");
+    @Autowired
+    private BookRepository repository;
 
     @QueryMapping
     public List<Book> allBooks() {
-        return List.of(book);
+        return repository.findAll();
     }
 
     @QueryMapping
     public Book bookById(@Argument String id) {
-        return book;
+        return repository.getReferenceById(Long.valueOf(id));
     }
 
     @MutationMapping
-    public Book addBook(@Argument String id ,@Argument String title, @Argument String author) {
-        return new Book(id ,title, author);
+    public Book addBook(@Argument int id, @Argument String title, @Argument String author, @Argument String category) {
+        return repository.save(new Book(id,title,author,category));
     }
+
 }
