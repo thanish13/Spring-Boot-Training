@@ -1,11 +1,11 @@
 package com.example.demo.service;
 
 import io.grpc.stub.StreamObserver;
+import net.devh.boot.grpc.server.service.GrpcService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.stereotype.Service;
 
-@Service
+@GrpcService
 class GrpcServerService extends SimpleGrpc.SimpleImplBase {
 
     private static final Log log = LogFactory.getLog(GrpcServerService.class);

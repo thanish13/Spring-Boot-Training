@@ -123,12 +123,6 @@
         </dependency>
 
         <dependency>
-            <groupId>net.devh</groupId>
-            <artifactId>grpc-server-spring-boot-starter</artifactId>
-            <version>3.1.0.RELEASE</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.18.0</version>
@@ -154,13 +148,13 @@
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
             <artifactId>camel-spring-boot-starter</artifactId>
-            <version>4.0.0</version>
+            <version>4.10.2</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
             <artifactId>camel-kafka-starter</artifactId>
-            <version>4.0.0</version>
+            <version>4.10.2</version>
         </dependency>
 
         <dependency>
@@ -179,6 +173,24 @@
             <groupId>io.grpc</groupId>
             <artifactId>grpc-stub</artifactId>
             <version>${grpc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-netty-shaded</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-protobuf</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-spring-boot-starter</artifactId>
+            <version>3.1.0.RELEASE</version> <!-- Use the latest stable version -->
         </dependency>
 
     </dependencies>
