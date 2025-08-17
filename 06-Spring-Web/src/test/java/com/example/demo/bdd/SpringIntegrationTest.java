@@ -1,5 +1,6 @@
 package com.example.demo.bdd;
 
+import com.example.demo.DemoApplication;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
@@ -14,15 +15,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.stereotype.Component;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.io.IOException;
 import java.util.HashMap;
 
 @CucumberContextConfiguration
-@SpringBootTest(classes = TestConfig.class , webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ContextConfiguration(classes = DemoApplication.class)
 public class SpringIntegrationTest {
 
     private static final Logger log = LoggerFactory.getLogger(SpringIntegrationTest.class);
+
     @LocalServerPort
     public int port;
 

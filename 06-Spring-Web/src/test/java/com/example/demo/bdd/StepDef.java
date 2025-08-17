@@ -1,19 +1,12 @@
 package com.example.demo.bdd;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.hc.client5.http.classic.methods.HttpGet;
-import org.apache.hc.client5.http.classic.methods.HttpPost;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.HttpClients;
-import org.apache.hc.core5.http.ClassicHttpRequest;
-import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpResponse;
-import org.apache.hc.core5.http.io.entity.StringEntity;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +40,7 @@ public class StepDef extends SpringIntegrationTest {
 
     @Then("the client receives status code of {int}")
     public void theClientReceivesStatusCodeOf(int statusCode) {
-        Assert.assertEquals(statusCode, response.getCode());
+        Assertions.assertEquals(statusCode, response.getCode());
     }
 
 }
