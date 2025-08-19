@@ -1,5 +1,6 @@
 package com.example.demo.api;
 
+import com.example.demo.model.Book;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +24,11 @@ public interface BookApi {
 
     @PostMapping
     @Operation(summary = "Add a new book", description = "Creates a new book entry")
-    ResponseEntity<?> createBook(@RequestBody Object book);
+    ResponseEntity<?> createBook(@RequestBody Book book);
 
     @PutMapping("/{id}")
     @Operation(summary = "Update a book", description = "Updates the details of an existing book")
-    ResponseEntity<?> updateBook(@PathVariable Long id, @RequestBody Object book);
+    ResponseEntity<?> updateBook(@PathVariable Long id, @RequestBody Book book);
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a book", description = "Deletes a book by its ID")
