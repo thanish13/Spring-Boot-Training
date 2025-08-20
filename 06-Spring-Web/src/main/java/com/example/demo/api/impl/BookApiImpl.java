@@ -17,31 +17,33 @@ public class BookApiImpl implements BookApi {
 
     @Override
     public ResponseEntity<?> getAllBooks() {
-        repository.findAll();
-        return ResponseEntity.ok().build();
+
+        return ResponseEntity.ok(repository.findAll());
     }
 
     @Override
     public ResponseEntity<?> getBookById(Long id) {
-        repository.getReferenceById(id);
-        return ResponseEntity.ok().build();
+
+        return ResponseEntity.ok(repository.getReferenceById(id));
     }
 
     @Override
     public ResponseEntity<?> createBook(Book book) {
         repository.saveAndFlush(book);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Created");
     }
 
     @Override
     public ResponseEntity<?> updateBook(Long id, Book book) {
         Book oldBook = repository.findById(id).stream().findFirst().stream().toList().get(0);
-        return ResponseEntity.ok().build();
+        oldBook = book;
+        repository.saveAndFlush(oldBook);
+        return ResponseEntity.ok("Updated");
     }
 
     @Override
     public ResponseEntity<?> deleteBook(Long id) {
         repository.deleteById(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Deleted");
     }
 }
