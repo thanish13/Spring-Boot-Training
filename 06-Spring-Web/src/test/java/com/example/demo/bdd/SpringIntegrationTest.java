@@ -20,6 +20,7 @@ import org.springframework.test.context.ContextConfiguration;
 import java.io.IOException;
 import java.util.HashMap;
 
+@CucumberContextConfiguration
 @SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SpringIntegrationTest {
 
