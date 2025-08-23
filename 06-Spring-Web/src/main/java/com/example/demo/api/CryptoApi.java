@@ -1,5 +1,6 @@
 package com.example.demo.api;
 
+import com.example.demo.model.EncryptedPayload;
 import org.springframework.web.bind.annotation.*;
 
 import javax.crypto.BadPaddingException;
@@ -13,10 +14,10 @@ import java.security.NoSuchAlgorithmException;
 public interface CryptoApi {
 
     @PostMapping("/encrypt")
-    public byte[] encrypt(@RequestHeader String plainText) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException;
+    public EncryptedPayload encrypt(@RequestHeader String plainText) throws Exception;
 
     @PostMapping("/decrypt")
-    public String decrypt(@RequestHeader String encryptedText) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException;
+    public String decrypt(@RequestBody EncryptedPayload encryptedPayload) throws Exception;
 
 
 }
