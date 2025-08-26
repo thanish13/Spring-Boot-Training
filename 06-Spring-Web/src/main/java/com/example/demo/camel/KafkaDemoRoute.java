@@ -3,7 +3,7 @@ package com.example.demo.camel;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class KafkaDemoRoute extends RouteBuilder {
 
     @Override
