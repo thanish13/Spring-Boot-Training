@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
@@ -24,14 +27,36 @@ public class AuthServerConfig {
 
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
+
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
-                .clientId("client-id")
-                .clientSecret("{noop}client-secret")
-                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                .scope("read")
+                .clientId("web-client")
+                .clientSecret("{noop}web-secret")
+                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+                .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+                .redirectUri("http://localhost:8080/login/oauth2/code/web-client")
+                .scope("openid")
+                .scope("profile")
                 .build();
 
         return new InMemoryRegisteredClientRepository(registeredClient);
+    }
+
+    @Bean
+    public ClientRegistrationRepository clientRegistrationRepository() {
+        ClientRegistration registration = ClientRegistration.withRegistrationId("web-client")
+                .clientId("web-client")
+                .clientSecret("web-secret")
+                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+                .redirectUri("http://localhost:8080/login/oauth2/code/web-client")
+                .scope("openid", "profile")
+                .authorizationUri("http://localhost:8080/oauth2/authorize")
+                .tokenUri("http://localhost:8080/oauth2/token")
+                .jwkSetUri("http://localhost:8080/oauth2/jwks")
+                .issuerUri("http://localhost:8080")
+                .clientName("Local Web Client")
+                .build();
+
+        return new InMemoryClientRegistrationRepository(registration);
     }
 
     @Bean
@@ -51,7 +76,7 @@ public class AuthServerConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.withUsername("thanish")
-                .password("{noop}SecureP@ss123")
+                .password("{noop}thanish")
                 .roles("USER")
                 .build();
         return new InMemoryUserDetailsManager(user);
