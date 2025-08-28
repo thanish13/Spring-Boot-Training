@@ -41,23 +41,23 @@ public class AuthServerConfig {
         return new InMemoryRegisteredClientRepository(registeredClient);
     }
 
-    @Bean
-    public ClientRegistrationRepository clientRegistrationRepository() {
-        ClientRegistration registration = ClientRegistration.withRegistrationId("web-client")
-                .clientId("web-client")
-                .clientSecret("web-secret")
-                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .redirectUri("http://localhost:8080/login/oauth2/code/web-client")
-                .scope("openid", "profile")
-                .authorizationUri("http://localhost:8080/oauth2/authorize")
-                .tokenUri("http://localhost:8080/oauth2/token")
-                .jwkSetUri("http://localhost:8080/oauth2/jwks")
-                .issuerUri("http://localhost:8080")
-                .clientName("Local Web Client")
-                .build();
-
-        return new InMemoryClientRegistrationRepository(registration);
-    }
+//    @Bean
+//    public ClientRegistrationRepository clientRegistrationRepository() {
+//        ClientRegistration registration = ClientRegistration.withRegistrationId("web-client")
+//                .clientId("web-client")
+//                .clientSecret("web-secret")
+//                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+//                .redirectUri("http://localhost:8080/login/oauth2/code/web-client")
+//                .scope("openid", "profile")
+//                .authorizationUri("http://localhost:8080/oauth2/authorize")
+//                .tokenUri("http://localhost:8080/oauth2/token")
+//                .jwkSetUri("http://localhost:8080/oauth2/jwks")
+//                .issuerUri("http://localhost:8080")
+//                .clientName("Local Web Client")
+//                .build();
+//
+//        return new InMemoryClientRegistrationRepository(registration);
+//    }
 
     @Bean
     public JWKSource<SecurityContext> jwkSource() throws NoSuchAlgorithmException {
