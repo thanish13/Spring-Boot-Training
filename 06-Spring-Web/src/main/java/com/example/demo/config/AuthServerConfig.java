@@ -47,12 +47,12 @@ public class AuthServerConfig {
                 .clientId("web-client")
                 .clientSecret("web-secret")
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .redirectUri("http://localhost:8080/login/oauth2/code/web-client")
+                .redirectUri("http://localhost:8081/login/oauth2/code/web-client")
                 .scope("openid", "profile")
-                .authorizationUri("http://localhost:8080/oauth2/authorize")
-                .tokenUri("http://localhost:8080/oauth2/token")
-                .jwkSetUri("http://localhost:8080/oauth2/jwks")
-                .issuerUri("http://localhost:8080")
+                .authorizationUri("http://localhost:8081/oauth2/authorize")
+                .tokenUri("http://localhost:8081/oauth2/token")
+                .jwkSetUri("http://localhost:8081/oauth2/jwks")
+                .issuerUri("http://localhost:8081")
                 .clientName("Local Web Client")
                 .build();
 
@@ -69,7 +69,7 @@ public class AuthServerConfig {
     @Bean
     public AuthorizationServerSettings authorizationServerSettings() {
         return AuthorizationServerSettings.builder()
-                .issuer("http://localhost:8080")
+                .issuer("http://localhost:8081")
                 .build();
     }
 
