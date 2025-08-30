@@ -1,11 +1,27 @@
+server:
+  port: 8081
+
 spring:
   security:
     oauth2:
       client:
         registration:
-          github:
-            client-id:
-            client-secret:
-            scope: user:email
-server:
-  port: 8080
+          articles-client-oidc:
+            provider: spring
+            client-id: articles-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8081/login/oauth2/code/{registrationId}"
+            scope: openid
+            client-name: articles-client-oidc
+          articles-client-authorization-code:
+            provider: spring
+            client-id: articles-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8081/authorized"
+            scope: articles.read
+            client-name: articles-client-authorization-code
+        provider:
+          spring:
+            issuer-uri: http://localhost:8081
