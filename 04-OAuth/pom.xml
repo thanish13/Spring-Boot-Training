@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>OAuth-Server</module>
-        <module>OAuth-Client</module>
+        <module>OAuth-Resource</module>
     </modules>
 
     <parent>
