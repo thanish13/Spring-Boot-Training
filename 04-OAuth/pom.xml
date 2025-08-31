@@ -11,6 +11,7 @@
     <modules>
         <module>OAuth-Server</module>
         <module>OAuth-Resource</module>
+        <module>OAuth-API</module>
     </modules>
 
     <parent>
@@ -56,6 +57,18 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-oauth2-authorization-server</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webflux</artifactId>
+            <version>6.1.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.projectreactor.netty</groupId>
+            <artifactId>reactor-netty</artifactId>
+            <version>1.1.15</version>
         </dependency>
 
     </dependencies>
