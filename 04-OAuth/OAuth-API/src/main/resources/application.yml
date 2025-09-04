@@ -2,6 +2,13 @@ server:
   port: 8080
 
 spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api_route
+          uri:  http://localhost:1300/
+          predicates:
+            - Path=/articles
   security:
     oauth2:
       client:
@@ -25,3 +32,9 @@ spring:
         provider:
           spring:
             issuer-uri: http://localhost:9000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
