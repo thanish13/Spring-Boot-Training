@@ -12,6 +12,7 @@
         <module>OAuth-Server</module>
         <module>OAuth-Resource</module>
         <module>OAuth-API</module>
+        <module>OAuth-Gateway</module>
     </modules>
 
     <parent>
