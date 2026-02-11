@@ -1,5 +1,7 @@
 package org.example.service;
 
+import org.example.model.GetCountryRequest;
+import org.example.model.GetCountryResponse;
 import org.example.repo.CountryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;

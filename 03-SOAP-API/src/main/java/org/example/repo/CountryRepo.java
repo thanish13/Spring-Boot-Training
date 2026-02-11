@@ -1,6 +1,8 @@
 package org.example.repo;
 
 import jakarta.annotation.PostConstruct;
+import org.example.model.Country;
+import org.example.model.Currency;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
