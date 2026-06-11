@@ -1,0 +1,21 @@
+<Server>
+    ....
+    <Service name="Catalina">
+        <Connector port="9080" maxHttpHeaderSize="8192" maxThreads="1000"  proxyPort="80" />
+
+        <Engine name="Catalina" defaultHost="localhost">
+            <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="true"
+                  xmlValidation="false" xmlNamespaceAware="false" />
+        </Engine>
+    </Service>
+
+    <Service name="CatalinaSecond">
+        <Connector port="9081" />
+
+        <Engine name="CatalinaSecond" defaultHost="localhost">
+            <Host name="localhost" appBase="intapps"
+                  unpackWARs="true" autoDeploy="true"
+                  xmlValidation="false" xmlNamespaceAware="false" />
+        </Engine>
+    </Service>
+</Server>

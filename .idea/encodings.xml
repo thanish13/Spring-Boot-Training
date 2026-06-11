@@ -3,5 +3,23 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/01-Initialisation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/01-Initialisation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/02-Jersey-Initialisation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/03-SOAP-API/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/04-OAuth/OAuth-API/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/04-OAuth/OAuth-Gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/04-OAuth/OAuth-Resource/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/04-OAuth/OAuth-Server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/04-OAuth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/04-OAuth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/05-REST-APP/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/05-REST-APP/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/06-Spring-Web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CryptoGate/Crypto-Certs/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CryptoGate/Crypto-Encrypt/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CryptoGate/Crypto-Token/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CryptoGate/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CryptoGate/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
 </project>
