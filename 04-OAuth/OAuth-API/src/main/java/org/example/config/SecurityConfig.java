@@ -18,8 +18,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests.anyRequest().authenticated()
                 )
-                .oauth2Login(oauth2Login ->
-                        oauth2Login.loginPage("/oauth2/authorization/articles-client-oidc"))
+                .oauth2Login(oauth2Login -> oauth2Login
+                        .loginPage("/oauth2/authorization/articles-client-oidc")
+                        .defaultSuccessUrl("/articles", true))
                 .oauth2Client(withDefaults());
         return http.build();
     }

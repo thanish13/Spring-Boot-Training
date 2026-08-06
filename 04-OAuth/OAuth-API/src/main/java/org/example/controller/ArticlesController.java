@@ -21,7 +21,7 @@ public class ArticlesController {
     ) {
         return this.webClient
                 .get()
-                .uri("http://localhost:8090/articles")
+                .uri("http://localhost:8090/data")
                 .attributes(oauth2AuthorizedClient(authorizedClient))
                 .retrieve()
                 .bodyToMono(String[].class)

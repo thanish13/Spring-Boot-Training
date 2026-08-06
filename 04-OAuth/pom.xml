@@ -32,13 +32,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>3.4.5</version>
+            <version>3.5.16</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
-            <version>3.4.5</version>
+            <version>3.5.16</version>
         </dependency>
 
         <dependency>
@@ -62,7 +62,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jersey</artifactId>
-            <version>3.3.7</version>
+            <version>3.5.16</version>
         </dependency>
 
         <dependency>
@@ -144,7 +144,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter</artifactId>
-            <version>4.3.0</version>
+            <version>5.0.2</version>
         </dependency>
 
 
@@ -155,7 +155,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2022.0.4</version> <!-- Or latest stable -->
+                <version>2025.0.3</version> <!-- Or latest stable -->
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
